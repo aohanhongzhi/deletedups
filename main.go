@@ -31,7 +31,12 @@ func main() {
 	if dry {
 		log.Printf("dry run: no files will be deleted")
 	}
-	suffixes := strings.Split(strings.ToLower(extensions), ",")
+	
+	var suffixes []string
+	extensions = strings.Trim(extensions, " ")
+	if len(extensions) > 0 {
+		suffixes = strings.Split(strings.ToLower(extensions), ",")
+	}
 
 	// scan for sizes
 	log.Printf("scanning %s for file sizes", keep)
